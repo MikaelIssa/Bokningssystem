@@ -19,9 +19,9 @@ namespace Labb3
     public partial class Reservation : Window
     {
         List<Booking> bookings = new List<Booking>()
-        {new Booking("Micke", "10:00", "4/11", "table 2"),
-        new Booking("Jack", "12:00", "4/11", "table 4"),
-        new Booking("king", "09:00", "4/11", "table 5")};
+        {new Booking("Micke", "10:00", "2022-4-11", " 2"),
+        new Booking("Jack", "12:00", "2022-4-11", " 4"),
+        new Booking("king", "09:00", "2022-4-11", " 5")};
        
 
         string[] TimeToPick = { "08:00", "09:00", "11:00", "12:00", "14:00", "15:00", "17:00", "18:00", "20:00", "21:00", "22:00" };
@@ -44,59 +44,82 @@ namespace Labb3
             
         }
         // private void RefreshList()
-        // {
+        //{
         //     myList.ItemsSource = null;
         //     myList.ItemsSource = bookings;
         //     if (bookings.Count != 0)
         //     {
-        //         foreach (Booking booking in bookings)
+        //        foreach (Booking booking in bookings)
         //         {
 
         //             myList.Items.Add(booking);
 
-        //         }
+        //       }
         //     }
         //     else
-        //     {
-        //         myList.Items.Add("No items in list");
-        //     }
+        //    {
+        //        myList.Items.Add("No items in list");
+        //    }
 
 
         // }
 
-
+        private void AlreadyBooked()
+        {
+            if(myList.Equals(TimeToPick) || myList.Equals(TableBooked))
+            {
+                Console.Write("Its already booked!");
+            }
+            else
+            {
+                Console.Write("Its booked!");
+            }
+        }
         
 
         private void Button_DeleteBooking(object sender, RoutedEventArgs e)
         {
           myList.Items.RemoveAt(myList.Items.IndexOf(myList.SelectedItem));
-        //   bookings.RemoveAt(bookings.IndexOf(bookings.SelectedItem));
+           bookings.RemoveAt(bookings.IndexOf(bookings.SelectedItem));
             
+
         }
 
         
 
         private void Button_AddBooking(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                Booking booking = new Booking(nameInput.Text, timeInput.Text, dateInput.Text, tableInput.Text);
+                bookings.Add(booking);
+                myList.Items.Add(booking);
 
+                AlreadyBooked();
+            }catch(Exception error)
+            {
+                Console.WriteLine("Du glömde trycka på något, försök igen.", " Varning!", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
            
-            Booking booking = new Booking(nameInput.Text, timeInput.Text, dateInput.Text, tableInput.Text);
-            bookings.Add(booking);
-            myList.Items.Add(booking);
-            // RefreshList();
+            //Booking booking = new Booking(nameInput.Text, timeInput.Text, dateInput.Text, tableInput.Text);
+            //bookings.Add(booking);
+            //myList.Items.Add(booking);
 
+            //AlreadyBooked();
 
         }
 
         private void Button_Bookningar(object sender, RoutedEventArgs e)
         {
+            myList.Items.Clear();
             foreach (Booking booking in bookings)
                 {
 
                     myList.Items.Add(booking);
-
-                }
-            // RefreshList()
+                //RefreshList();
+            }
+            
+            
         }
     }
 

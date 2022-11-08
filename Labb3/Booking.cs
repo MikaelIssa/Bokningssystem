@@ -32,7 +32,7 @@ namespace Labb3
 
         public override string ToString()
         {
-            return $"{Name} {Time}/{Date} {TableNumber}";
+            return $"{Name} {Time}/{Date}  table {TableNumber}";
         }
     }
 
