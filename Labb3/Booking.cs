@@ -11,24 +11,24 @@ namespace Labb3
     public class Booking
     {
 
-        string Name ;
-        string Time ;
-        string Date;
-        string TableNumber;
+        string name;
+        string time;
+        string date;
+        string tableNumber;
 
-        public Booking(string name, string time, string date, string tablenumber)
+        public Booking(string name, string time, string date, string tableNumber)
         {
             Name = name;
             Time = time;
             Date = date;
-            TableNumber = tablenumber;
+            TableNumber = tableNumber;
 
         }
 
-        public string name { get; set; }
-        public string time { get; set; } 
-        public string date { get; set; }
-        public string tableNumber { get; set; }
+        public string Name { get; set; }
+        public string Time { get; set; } 
+        public string Date { get; set; }
+        public string TableNumber { get; set; }
 
         public override string ToString()
         {

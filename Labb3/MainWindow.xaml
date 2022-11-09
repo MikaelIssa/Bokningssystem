@@ -15,20 +15,20 @@
         </Grid.RowDefinitions>
 
         <Label Content="Table Number" HorizontalAlignment="Left" Margin="253,0,0,0" VerticalAlignment="Center"/>
-        <ComboBox Name="tableInput" HorizontalAlignment="Left" Margin="253,130,0,0" VerticalAlignment="Top" Width="83" RenderTransformOrigin="0.458,2.956" >
+        <ComboBox Name="tableInput" HorizontalAlignment="Left" Margin="253,130,0,0" VerticalAlignment="Top" Width="83" RenderTransformOrigin="0.458,2.956">
 
         </ComboBox>
         <Button  Content="bookButton" HorizontalAlignment="Left" Margin="194,170,0,0" VerticalAlignment="Top" Width="95" Click="Button_AddBooking"/>
         <Button Name="deleteButton" Content="Remove" HorizontalAlignment="Left" Margin="194,200,0,0" VerticalAlignment="Top" Width="95" Click="Button_DeleteBooking" Grid.RowSpan="2"/>
 
-        <ListBox Name="myList"  Margin="526,80,43,114" Grid.RowSpan="2"  />
+        <ListBox Name="myList"  Margin="526,80,43,114" Grid.RowSpan="2" />
 
 
-        <ComboBox Name="timeInput" HorizontalAlignment="Left" Margin="122,130,0,0" VerticalAlignment="Top" Width="108" >
+        <ComboBox Name="timeInput" HorizontalAlignment="Left" Margin="122,130,0,0" VerticalAlignment="Top" Width="108">
 
         </ComboBox>
         <Label Content="Time" HorizontalAlignment="Left" Margin="158,0,0,0" VerticalAlignment="Center" Width="43"/>
-        <DatePicker Name="dateInput"  HorizontalAlignment="Left" Margin="122,56,0,0" VerticalAlignment="Top"/>
+        <DatePicker Name="dateInput"  HorizontalAlignment="Left" Margin="122,56,0,0" VerticalAlignment="Top" DisplayDateStart="2022-11-04" DisplayDateEnd="2022-11-06"/>
 
         <TextBox Name="nameInput" HorizontalAlignment="Left" Margin="253,56,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Height="24"/>
         <Label   Content="Name" HorizontalAlignment="Left" Margin="280,25,0,0" VerticalAlignment="Top" Width="56"/>
