@@ -20,9 +20,9 @@ namespace Labb3
     public partial class Reservation : Window
     {
         List<Booking> bookings = new List<Booking>()
-        {new Booking("Micke", "10:00", "2022-4-11", " 2"),
-        new Booking("Jack", "12:00", "2022-4-11", " 4"),
-        new Booking("king", "09:00", "2022-4-11", " 5")};
+        {new Booking("Micke", "10:00", "2022/4/11", " 2"),
+        new Booking("Jack", "12:00", "2022/4/11", " 4"),
+        new Booking("king", "09:00", "2022/4/11", " 5")};
 
 
         string[] TimeToPick = { "08:00", "09:00", "11:00", "12:00", "14:00", "15:00", "17:00", "18:00", "20:00", "21:00", "22:00" };
@@ -54,7 +54,7 @@ namespace Labb3
             var bokadVidSammaTid =
                      (from valdBokning in bookings
                       where valdBokning.Time == timeInput.SelectedItem.ToString()
-                      && valdBokning.Date == valdDatum.Value.ToString("yyyy-MM-dd")
+                      && valdBokning.Date == valdDatum.Value.ToString("yyyy/MM/dd")
                       && valdBokning.TableNumber == tableInput.SelectedItem.ToString()
                       select valdBokning).Any();
 
@@ -65,6 +65,14 @@ namespace Labb3
                 {
                     MessageBox.Show("Its already booked!");
                     return;
+                }
+                else
+                {
+                    bookings.Add(booking);
+                    myList.Items.Add(booking);
+
+                    MessageBox.Show("Its booked!");
+                    break;
                 }
 
             }
