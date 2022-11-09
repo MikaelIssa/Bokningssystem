@@ -27,6 +27,8 @@ namespace Labb3
 
         string[] TimeToPick = { "08:00", "09:00", "11:00", "12:00", "14:00", "15:00", "17:00", "18:00", "20:00", "21:00", "22:00" };
         string[] TableBooked = { "1", "2", "3", "4", "5" };
+        
+
 
         public Reservation()
         {
@@ -37,6 +39,7 @@ namespace Labb3
                 myList.Items.Add(booking);
 
             }
+            
             timeInput.ItemsSource = TimeToPick;
             tableInput.ItemsSource = TableBooked;
 
@@ -45,59 +48,67 @@ namespace Labb3
 
         public void Bookings()
         {
+            DateTime? valdDatum = dateInput.SelectedDate;
             Booking booking = new Booking(nameInput.Text, timeInput.Text, dateInput.Text, tableInput.Text);
+
+            var bokadVidSammaTid =
+                     (from valdBokning in bookings
+                      where valdBokning.Time == timeInput.SelectedItem.ToString()
+                      && valdBokning.Date == valdDatum.Value.ToString("yyyy-MM-dd")
+                      && valdBokning.TableNumber == tableInput.SelectedItem.ToString()
+                      select valdBokning).Any();
+
             foreach (var checkbooking in bookings)
             {
-                
-                
-                if (checkbooking.TableNumber == booking.TableNumber && checkbooking.Time == booking.Time)
-                {
 
+                if (bokadVidSammaTid)
+                {
                     MessageBox.Show("Its already booked!");
-                    bookings.Add(booking);
-                    myList.Items.Add(booking);
-                    break;
+                    return;
                 }
-                else
-                {
 
-                    bookings.Add(booking);
-                    myList.Items.Add(booking);
-
-                    MessageBox.Show("Its booked!");
-                    break;
-                    }
-                }
+            }
         }
-
 
         private void Button_DeleteBooking(object sender, RoutedEventArgs e)
         {
             myList.Items.RemoveAt(myList.Items.IndexOf(myList.SelectedItem));
-           bookings.RemoveAt(myList.Items.IndexOf(myList.SelectedItem));
+            bookings.RemoveAt(myList.Items.IndexOf(myList.SelectedItem));
         }
-    
+
 
         private void Button_AddBooking(object sender, RoutedEventArgs e)
         {
             Bookings();
-           
+
         }
 
         private void Button_Bookningar(object sender, RoutedEventArgs e)
         {
-            myList.Items.Clear();
-            foreach (Booking booking in bookings)
+            try
             {
+                myList.Items.Clear();
 
-
-                myList.Items.Add(booking);
-                
+                foreach (Booking item in bookings)
+                {
+                    myList.Items.Add(item.ToString());
+                }
             }
 
+            catch (Exception ex)
+            {
+                MessageBox.Show("Det blev ett fel." + ex.Message);
+            }
+
+            //myList.Items.Clear();
+            //foreach (Booking booking in bookings)
+            //{
+
+
+            //    myList.Items.Add(booking);
 
         }
+
     }
-
-
+   
 }
