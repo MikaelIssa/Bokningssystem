@@ -77,11 +77,27 @@ namespace Labb3
 
             }
         }
+        private void Clear_Add()
+        {
+            myList.Items.Clear();
+            foreach (var bokning in bookings)
+            {
+                myList.Items.Add(bokning.Name + ", " + bokning.Date.ToString() + ", " + bokning.Time.ToString() + ", " + bokning.TableNumber.ToString());
+            }
+        }
 
         private void Button_DeleteBooking(object sender, RoutedEventArgs e)
         {
-            myList.Items.RemoveAt(myList.Items.IndexOf(myList.SelectedItem));
-            bookings.RemoveAt(myList.Items.IndexOf(myList.SelectedItem));
+            if (myList.SelectedItem != null)
+            {
+                bookings.RemoveAt(myList.SelectedIndex);
+                Clear_Add();
+            }
+
+
+
+            //myList.Items.RemoveAt(myList.Items.IndexOf(myList.SelectedItem));
+            //bookings.RemoveAt(myList.Items.IndexOf(myList.SelectedItem));
         }
 
 
@@ -108,12 +124,7 @@ namespace Labb3
                 MessageBox.Show("Det blev ett fel." + ex.Message);
             }
 
-            //myList.Items.Clear();
-            //foreach (Booking booking in bookings)
-            //{
-
-
-            //    myList.Items.Add(booking);
+            
 
         }
 
